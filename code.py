@@ -12,8 +12,7 @@
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
@@ -29,9 +28,9 @@ from states import DefaultMenuItemState, MainMenu, State, StateManager
 from util import ALL_COLORS, display_bg_and_text, generate_qr_code_display_group
 
 # These are constants, try changing them and saving the file!
-NAME = "Pythonista"
+NAME = "DIANA"
 NAME_BADGE_COLORS = ALL_COLORS
-URL = "https://aka.ms/pycon2020"
+URL = "https://superdi.dev"
 LED_BRIGHTNESS = 0.1  # Dim the brightness of the LEDs.
 pybadger.pixels.brightness = LED_BRIGHTNESS
 
@@ -57,6 +56,12 @@ class Credits(DefaultMenuItemState):
     def display(self):
         display_bg_and_text(image="images/credits.bmp")
 
+class Work(DefaultMenuItemState):
+
+    label = "Where do I work?"
+
+    def display(self):
+        display_bg_and_text(image="images/work.bmp")
 
 class NameBadge(DefaultMenuItemState):
 
@@ -77,7 +82,7 @@ class NameBadge(DefaultMenuItemState):
 
 class QrCode(DefaultMenuItemState):
 
-    label = "Learn More"
+    label = "My Website"
 
     def __init__(self):
         self.qr_group = generate_qr_code_display_group(URL)
@@ -120,12 +125,13 @@ class EasterEgg(State):
         state_manager.previous_state()
 
 
-main_menu = MainMenu(NameBadge, SocialBattery, QrCode, Credits, PressStart)
+main_menu = MainMenu(NameBadge, SocialBattery, Work, QrCode, Credits, PressStart)
 
 state_manager = StateManager()
 state_manager.add(
     main_menu,
     PressStart(),
+    Work(),
     Credits(),
     NameBadge(),
     QrCode(),

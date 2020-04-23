@@ -103,7 +103,7 @@ class MainMenu(State):
             height=step,
             label_color=0xFFFFFF,
             fill_color=0x000,
-            label="Microsoft PyBadge v1.0",
+            label="Diana's PyBadge v1.0",
             label_font=terminalio.FONT,
         )
         self.menu_group.append(title.group)
